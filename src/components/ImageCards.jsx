@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ImageCard from './ImageCard';
-import config from '../config';
 import SearchBar from './SearchBar';
 
 const ImageCards = () => {
@@ -8,9 +7,10 @@ const ImageCards = () => {
     const [data, setData] = useState([]);
     const [term, setTerm] = useState('');
     const [error, setError] = useState('');
+    const api_key = process.env.REACT_APP_PIXABAY_API_KEY;
     async function fetchData(){
         setLoading(true);
-        fetch("https://pixabay.com/api/?key="+ config.PIXABAY_API_KEY +"&q="+ term +"&image_type=photo&pretty=true")
+        fetch("https://pixabay.com/api/?key=" + api_key +"&q="+ term +"&image_type=photo&pretty=true")
         .then(res => res.json())
         .then(data => {
           console.log(data);
